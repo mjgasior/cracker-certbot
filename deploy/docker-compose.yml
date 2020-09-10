@@ -1,33 +1,17 @@
-version: "3"
+version: "3.1"
 
 services:
-  cracker-db:
-    container_name: cracker-db
-    image: mongo:4.2.6
-    networks:
-      - cracknet
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./../database:/data/db
-
-  cracker-client:
-    container_name: cracker-client
-    image: mjgasior/cracker-client:0.0.3
-    networks:
-      - cracknet
+  letsencrypt-nginx-container:
+    container_name: "letsencrypt-nginx-container"
+    image: nginx:latest
     ports:
       - "80:80"
-      - "443:443"
-
-  cracker-server:
-    container_name: cracker-server
-    image: mjgasior/cracker-server:0.0.1
-    environment:
-      - MONGODB_ADDRESS=cracker-db:27017
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./letsencrypt-site:/usr/share/nginx/html
     networks:
-      - cracknet
+      - docker-network
 
 networks:
-  cracknet:
+  docker-network:
     driver: bridge
