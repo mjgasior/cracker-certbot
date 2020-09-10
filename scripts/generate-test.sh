@@ -5,6 +5,7 @@ docker run -it --rm \
     -v "/var/log/letsencrypt:/var/log/letsencrypt" \
     certbot/certbot \
     certonly --webroot \
-    --email michaljgasior@gmail.com --agree-tos --no-eff-email \
+    --register-unsafely-without-email --agree-tos \
     --webroot-path=/data/letsencrypt \
+    --staging \
     -d cracker.red -d www.cracker.red
