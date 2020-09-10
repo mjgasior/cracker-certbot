@@ -8,7 +8,7 @@ aws lightsail get-static-ip --static-ip-name Cracker-app-ip
 
 # Create new instance
 echo -e "\n\e[92mCreating new instance\e[0m"
-userdata="sudo curl -o lightsail-compose.sh https://raw.githubusercontent.com/mjgasior/cracker-app/master/deploy/lightsail-compose.sh \
+userdata="sudo curl -o lightsail-compose.sh https://raw.githubusercontent.com/mjgasior/cracker-certbot/master/deploy/lightsail-compose.sh \
     && sudo chmod +x ./lightsail-compose.sh \
     && sudo ./lightsail-compose.sh"
 
